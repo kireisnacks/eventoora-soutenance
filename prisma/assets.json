@@ -1,0 +1,346 @@
+[
+    {
+      "_id": "507f1f77bcf86cd799439011",
+      "name": "Wi-Fi",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaWifi"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439012",
+      "name": "Chaises",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "GiChair"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439013",
+      "name": "Tables",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "GiTable"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439014",
+      "name": "Tableaux blancs",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaChalkboard"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439015",
+      "name": "Tableau noir",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaChalkboardTeacher"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439016",
+      "name": "Projecteur",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "IoMdProjector"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439017",
+      "name": "Écran",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaTv"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439018",
+      "name": "Équipement vidéo",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaVideo"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439019",
+      "name": "Équipement d’éclairage",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaLightbulb"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901a",
+      "name": "Écran vert",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "GiGreenScreen"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901b",
+      "name": "Technicien audio/vidéo",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaHeadphones"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901c",
+      "name": "Micros",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaMicrophone"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901d",
+      "name": "Cuisine",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaUtensils"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901e",
+      "name": "Café",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaCoffee"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943901f",
+      "name": "Imprimante",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaPrint"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439020",
+      "name": "Toilettes",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaRestroom"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439021",
+      "name": "Haut-parleurs",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaVolumeUp"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439022",
+      "name": "Scène",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaTheaterMasks"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439023",
+      "name": "Système de climatisation/chauffage",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaTemperatureLow"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439024",
+      "name": "Connexion Internet par câble (Ethernet)",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaEthernet"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439025",
+      "name": "Équipement de streaming",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaStream"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439026",
+      "name": "Machine à café/thé",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaCoffee"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439027",
+      "name": "Réfrigérateur",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaIceCream"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439028",
+      "name": "Paperboard",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaStickyNote"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902a",
+      "name": "Éclairage réglable",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaAdjust"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902b",
+      "name": "Système de sonorisation (enceintes Bluetooth)",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaBluetooth"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902c",
+      "name": "Vestiaire",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaHanger"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902f1",
+      "name": "Loges",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaTheaterMasks"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943903f1",
+      "name": "Bassin d'eau/Evier",
+      "category": "equipment",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaSink"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902d",
+      "name": "Lumière naturelle",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaSun"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902e",
+      "name": "Place(s) de stationnement",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaParking"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943902f2",
+      "name": "Insonorisé",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaVolumeMute"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439030",
+      "name": "Monte-charges",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaElevator"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439031",
+      "name": "Transports en commun (proximité)",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaBus"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439032",
+      "name": "Espace en extérieur",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaTree"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439033",
+      "name": "Sécurité",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaShieldAlt"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439034",
+      "name": "Accessible en fauteuil roulant",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaWheelchair"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439035",
+      "name": "Services d’entretien",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaBroom"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439036",
+      "name": "Accès depuis la rue",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaStreetView"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439038",
+      "name": "Salle privée",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaLock"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439039",
+      "name": "Toit-terrasse",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaBuilding"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943903a",
+      "name": "Fonds de studio blanc",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaPaintBrush"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943903b",
+      "name": "Sacs de sable",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaWeightHanging"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943903d",
+      "name": "Portant à vêtements",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaHanger"
+    },
+    {
+      "_id": "507f1f77bcf86cd79943903e",
+      "name": "Rideaux/Stores",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaCurtains"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439040",
+      "name": "Vue panoramique",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaEye"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439041",
+      "name": "Proximité des commerces/restaurants",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaStore"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439047",
+      "name": "Parking privé",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaParking"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439048",
+      "name": "Proximité de transports en commun",
+      "category": "feature",
+      "createdAt": "2025-03-10T00:00:00Z",
+      "reactIcon": "FaSubway"
+    }
+  ]
+  

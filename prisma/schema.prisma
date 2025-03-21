@@ -1,0 +1,170 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  firstName      String?
+  lastName       String?
+  email          String?       @unique
+  emailVerified  DateTime?
+  sexe           Sexe?
+  phone          String?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  favoriteIds    String[]      @db.ObjectId
+
+  accounts       Account[]
+  spaces         Space[]
+  reservations   Reservation[]
+  reviews        Review[]
+}
+
+enum Sexe {
+  M
+  F
+  O
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Space {
+  id                 String            @id @default(auto()) @map("_id") @db.ObjectId
+  title              String
+  description        String
+  category           String
+  size               Int
+  city               String
+  address            String
+  postalCode         String
+  parkingDescription String
+  rules              String
+  scard              Boolean
+  minimumAge         Int
+  instructions       String
+  latitude           Float?
+  longitude          Float?
+  cancellationPolicy String
+  price              Int
+  minimumHour        Int
+  instantBooking     Boolean?
+  capacity           Int
+  status             SpaceStatus      @default(PENDING)
+  adminComments      String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  userId             String           @db.ObjectId
+
+  thumbnail          String[]
+  assets             String[]  
+  activities         String[]
+
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  reservations       Reservation[]
+  operatingHours     OperatingHours[]
+  reviews            Review[]
+  blockedSlots       BlockedSlot[]
+}
+
+enum SpaceStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Reservation {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  spaceId       String   @db.ObjectId
+  startDateHour DateTime
+  endDateHour   DateTime
+  totalPrice    Int
+  status        ReservationStatus @default(PENDING)
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  space         Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  PAYMENT_PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+
+model OperatingHours {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  spaceId   String    @db.ObjectId
+  dayOfWeek DayOfWeek
+  isOpen    Boolean
+  openTime  String? //'HH:MM'
+  closeTime String? //'HH:MM'
+
+  space     Space     @relation(fields: [spaceId], references: [id])
+}
+
+enum DayOfWeek {
+  Lundi
+  Mardi
+  Mercredi
+  Jeudi
+  Vendredi
+  Samedi
+  Dimanche
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  spaceId   String   @db.ObjectId
+  userId    String   @db.ObjectId
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  space     Space    @relation(fields: [spaceId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+
+model BlockedSlot {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  spaceId   String   @db.ObjectId
+  startTime DateTime
+  endTime   DateTime
+  motif     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  space     Space    @relation(fields: [spaceId], references: [id])
+}
+
