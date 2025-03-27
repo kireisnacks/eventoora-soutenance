@@ -1,8 +1,8 @@
 'use client';
 
-import { Space , Reservation , Review} from "@prisma/client";
+import {Review} from "@prisma/client";
 
-import { SafeSpace, SafeUser } from "@/app/types";
+import { SafeSpace, SafeUser , SafeReservation } from "@/app/types";
 import { useRouter } from "next/navigation";
 import React, { useCallback , useMemo } from "react";
 import { format } from "date-fns";
@@ -19,12 +19,13 @@ interface ListingCardProps {
     data: SafeSpace & {
         reviews: Review[];
     };
-    reservation?: Reservation;
+    reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
     currentUser?: SafeUser | null;
+    badgeLabel? : string;
 
 }
 
@@ -35,7 +36,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
     disabled,
     actionLabel,
     actionId="",
-    currentUser
+    currentUser,
+    badgeLabel ="",
 }) => {
     const router = useRouter();
     //const {getByValue} = useCountries()
@@ -68,15 +70,20 @@ const ListingCard: React.FC<ListingCardProps> = ({
     },[reservation, data.price]);
 
     const reservationDate = useMemo(() => {
-        if(!reservation){
+        if (!reservation) {
             return null;
         }
-
+    
         const start = new Date(reservation.startDateHour);
         const end = new Date(reservation.endDateHour);
-
-        return `${format(start, 'PP')} - ${format(end, 'PP')}`;
-    },[reservation])
+    
+        // Format the date and time
+        const formattedDate = format(start, 'PP'); // Format the date as 'PP'
+        const formattedStartTime = format(start, 'HH:mm'); // Format the start time as 'HH:mm'
+        const formattedEndTime = format(end, 'HH:mm'); // Format the end time as 'HH:mm'
+    
+        return `${formattedDate} | ${formattedStartTime} - ${formattedEndTime}`;
+    }, [reservation]);
 
 
     return(
@@ -96,7 +103,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                         rounded-xl
                     "
                 >
-                    <Carousel images={data.thumbnail} />
+                    <Carousel images={data.thumbnail} badgeLabel={badgeLabel} />
                     <div className="absolute top-3 right-3">
                         <HeartButton
                             spaceId={data.id}
@@ -108,39 +115,47 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     {data?.title}
                 </div>
                 <div className="flex items-center gap-4 font-light text-neutral-500">
-                    {averageRating && (
-                        <div className="flex items-center gap-1">
-                            <AiFillStar className="text-yellow-500" />
-                            <span>{averageRating}</span>
+                    {reservation ? (
+                        // Display reservation date if a reservation exists
+                        <div className="font-light text-neutral-500">
+                            {reservationDate}
                         </div>
+                    ) : (
+                        // Display average rating and capacity if no reservation exists
+                        <>
+                            {averageRating && (
+                                <div className="flex items-center gap-1">
+                                    <AiFillStar className="text-yellow-500" />
+                                    <span>{averageRating}</span>
+                                </div>
+                            )}
+                            <div className="flex items-center gap-1">
+                                <BsPeople />
+                                <span>{data.capacity} Personnes</span>
+                            </div>
+                        </>
                     )}
-                    <div className="flex items-center gap-1">
-                        <BsPeople />
-                        <span>{data.capacity} Personnes</span>
-                    </div>
-                </div>
-                <div className="flex flex-row items-center gap-1">
+                </div>  
+                <div className="flex flex-row items-center gap-1 pb-2">
                     <div className="font-semibold">
-                        {price} AR
+                        {price} MGA
                     </div>
                     {!reservation && (
                         <div className="font-light">
                             par heure
                         </div>
                     )}
-                    {onAction && actionLabel && (
-                        <Button
-                            disabled={disabled}
-                            small
-                            label={actionLabel}
-                            onClick={handleCancel}
-                        />
-                    )}
                 </div>
+                {onAction && actionLabel && (
+                    <Button
+                        disabled={disabled}
+                        small
+                        label={actionLabel}
+                        onClick={handleCancel}
+                    />
+                )}
             </div>
-
         </div>
-
     );
 }
 

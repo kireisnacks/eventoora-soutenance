@@ -1,11 +1,27 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import MenuItem from './MenuItem'; // Adjust the import path as necessary
 
 const Menu = () => {
+    const router = useRouter();
     const handleClick = (label: string) => {
-        console.log(`Clicked on ${label}`);
-        // Add your click handling logic here
+        switch (label) {
+            case 'Accueil':
+                router.push('/'); // Navigate to the home page
+                break;
+            case 'Parcourir':
+                console.log(`Clicked on ${label}`); // Add logic for "Parcourir" if needed
+                break;
+            case 'Réservations':
+                router.push('/reservations'); // Navigate to the reservations page
+                break;
+            case 'Messagerie':
+                console.log(`Clicked on ${label}`); // Add logic for "Messagerie" if needed
+                break;
+            default:
+                console.log(`Clicked on ${label}`); // Default case for other labels
+        }
     };
 
     return (

@@ -9,6 +9,7 @@ interface ButtonProps {
     disabled?: boolean;
     outline?: boolean;
     small?: boolean;
+    medium?: boolean;
     iconLucide?: LucideIcon;
     iconReact?: IconType;
     rounded?: boolean
@@ -20,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     disabled,
     outline,
     small,
+    medium,
     iconLucide:Iconl,
     iconReact:Iconr,
     rounded
@@ -43,6 +45,10 @@ const Button: React.FC<ButtonProps> = ({
                 ${small ? 'text-sm' : 'text-md'}
                 ${small ? 'font-light' : 'font-semibold'}
                 ${small ? 'border-[1px]' : 'border-2'}
+                ${medium ? 'py-2' : ''}
+                ${medium ? 'text-md' : ''}
+                ${medium ? 'font-semibold' : ''}
+                ${medium ? 'border-2' : ''}
             `}
         >
             {Iconr && (

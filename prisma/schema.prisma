@@ -13,24 +13,23 @@ model User {
   lastName       String?
   email          String?       @unique
   emailVerified  DateTime?
-  sexe           Sexe?
+  sexe           String?
+  dateOfBirth    DateTime?
   phone          String?
   image          String?
   hashedPassword String?
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
   favoriteIds    String[]      @db.ObjectId
+  isSuper        Boolean
 
   accounts       Account[]
   spaces         Space[]
   reservations   Reservation[]
   reviews        Review[]
-}
-
-enum Sexe {
-  M
-  F
-  O
+  transactions       Transaction[]
+  sentMessages     Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
 }
 
 model Account {
@@ -74,7 +73,6 @@ model Space {
   instantBooking     Boolean?
   capacity           Int
   status             SpaceStatus      @default(PENDING)
-  adminComments      String?
   createdAt          DateTime         @default(now())
   updatedAt          DateTime         @updatedAt
   userId             String           @db.ObjectId
@@ -101,6 +99,7 @@ model Reservation {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   userId        String   @db.ObjectId
   spaceId       String   @db.ObjectId
+  transactionId String?  @db.ObjectId
   startDateHour DateTime
   endDateHour   DateTime
   totalPrice    Int
@@ -108,6 +107,10 @@ model Reservation {
   createdAt     DateTime @default(now())
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   space         Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  transaction   Transaction? @relation(fields: [transactionId], references:[id])
+
+  messages Message[]
 }
 
 enum ReservationStatus {
@@ -118,6 +121,21 @@ enum ReservationStatus {
   IN_PROGRESS
   COMPLETED
   CANCELED
+}
+
+model Transaction {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String        @db.ObjectId
+  amount       Int           // Total en MGA
+  currency     String        @default("MGA")
+  status       String        // "pending", "completed", "refunded"
+  stripeId     String        @unique // ID de session Stripe
+  invoiceUrl   String?       // URL de la facture globale
+  createdAt    DateTime      @default(now())
+  
+  user         User          @relation(fields: [userId], references: [id])
+
+  reservations Reservation[] // Toutes les réservations liées
 }
 
 
@@ -166,5 +184,21 @@ model BlockedSlot {
   updatedAt DateTime @updatedAt
 
   space     Space    @relation(fields: [spaceId], references: [id])
+}
+
+model Message {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  content     String
+  senderId    String     @db.ObjectId
+  receiverId  String     @db.ObjectId
+  reservationId String   @db.ObjectId
+  createdAt   DateTime   @default(now())
+  isSystem    Boolean    @default(false)
+  isRead      Boolean    @default(false)
+
+  sender      User       @relation("SentMessages", fields: [senderId], references: [id])
+  receiver    User       @relation("ReceivedMessages", fields: [receiverId], references: [id])
+
+  reservation Reservation @relation(fields: [reservationId], references: [id])
 }
 

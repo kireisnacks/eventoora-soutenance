@@ -9,7 +9,7 @@ interface IParams {
 
 export default async function getReservations(params: IParams) {
     try {
-        const { spaceId, userId, authorId } = params;
+        const { spaceId, userId, authorId } = await params;
 
         const query: any = {};
 
@@ -31,8 +31,10 @@ export default async function getReservations(params: IParams) {
                 space: {
                     include: {
                         operatingHours: true, // Include operatingHours for the space
+                        reviews: true,
                     },
                 },
+                user: true
             },
             orderBy: {
                 createdAt: 'desc',
@@ -61,9 +63,17 @@ export default async function getReservations(params: IParams) {
                 space: {
                     ...reservation.space,
                     createdAt: reservation.space.createdAt.toISOString(),
-                    operatingHours: reservation.space.operatingHours,
+                    operatingHours: reservation.space.operatingHours || [],
+                    reviews: reservation.space.reviews || [],
                     cancellationPolicy, // Ensure proper typing
                 },
+                user: {
+                    ...reservation.user,
+                    createdAt: reservation.space.createdAt.toISOString(),
+                    updatedAt: reservation.user.updatedAt.toISOString(),
+                    emailVerified: reservation.user.emailVerified?.toISOString() || null,
+                    dateOfBirth: reservation.user.dateOfBirth?.toISOString() || null
+                }
             };
         });
 

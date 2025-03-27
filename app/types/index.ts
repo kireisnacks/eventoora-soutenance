@@ -1,4 +1,4 @@
-import { Space, User , Reservation ,  OperatingHours  } from "@prisma/client";
+import { Space, User , Reservation ,  OperatingHours , Review } from "@prisma/client";
 import { IconType } from "react-icons";
 import { cancellationPolicies } from "../host/HostWindow";
 
@@ -9,6 +9,7 @@ export type SafeSpace = Omit<
 > & {
     createdAt: string;
     operatingHours: OperatingHours[];
+    reviews : Review[];
     cancellationPolicy: CancellationPolicyKey;
 };
 
@@ -30,17 +31,19 @@ export type SafeReservation = Omit<
     startDateHour: string;
     endDateHour: string;
     space: SafeSpace;
+    user: SafeUser;
 };
 
 
 // Définition d'un type 'SafeUser' basé sur le modèle 'User' de Prisma
 export type SafeUser = Omit<
     User,
-    "createdAt" | "updatedAt" | "emailVerified"
+    "createdAt" | "updatedAt" | "emailVerified" | "dateOfBirth"
 > & {
     createdAt: string; // Convertit 'createdAt' en chaîne pour être compatible avec les composants React
     updatedAt: string; // Convertit 'updatedAt' en chaîne pour être compatible avec les composants React
     emailVerified: string | null; // Convertit 'emailVerified' en chaîne pour uniformiser le format
+    dateOfBirth: string | null;
 };
 
 /**

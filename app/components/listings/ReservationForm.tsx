@@ -19,6 +19,7 @@ interface ReservationFormProps {
   price: number;
   minimumHour: number;
   operatingHours: OperatingHours[];
+  bookedSlots: Array<{ date: string; slots: string[] }>;
   disabledDates?: Date[];
   totalPrice: number;
   isSubmitting: boolean;
@@ -34,6 +35,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   price,
   minimumHour,
   operatingHours,
+  bookedSlots,
   disabledDates,
   totalPrice,
   isSubmitting,
@@ -53,6 +55,19 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       .replace(/^\w/, (c) => c.toUpperCase());
   };
 
+  const generateTimeSlots = (start: Date, end: Date) => {
+    const slots: string[] = [];
+    let current = new Date(start);
+    
+    if (end < start) end.setDate(end.getDate() + 1);
+    
+    while (current < end) {
+      slots.push(format(current, 'HH:mm'));
+      current = addMinutes(current, 30);
+    }
+    return slots;
+  };
+
   const getAvailableSlots = (date: Date, currentIndex: number) => {
     const dayName = normalizeDayName(date);
     const hoursList = operatingHours
@@ -63,13 +78,18 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       )
       .sort((a, b) => a.openTime.localeCompare(b.openTime));
 
-    const bookedSlots = dateTimeEntries
+    const currentEntriesSlots = dateTimeEntries
       .filter((_, idx) => idx !== currentIndex)
-      .filter(entry => format(entry.date, 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'))
-      .flatMap(entry => generateTimeSlots(
-        new Date(`${format(entry.date, 'yyyy-MM-dd')}T${entry.startTime}`),
-        new Date(`${format(entry.date, 'yyyy-MM-dd')}T${entry.endTime}`)
-      ));
+      .flatMap(entry => {
+        const start = new Date(`${format(entry.date, 'yyyy-MM-dd')}T${entry.startTime}`);
+        const end = new Date(`${format(entry.date, 'yyyy-MM-dd')}T${entry.endTime}`);
+        return generateTimeSlots(start, end);
+      });
+
+    const currentDate = format(date, 'yyyy-MM-dd');
+    const bookedForDate = bookedSlots.find(s => s.date === currentDate)?.slots || [];
+
+    const allBookedSlots = [...bookedForDate, ...currentEntriesSlots];
 
     const slots: string[] = [];
     
@@ -87,25 +107,12 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
       while (current < end) {
         const time = format(current, 'HH:mm');
-        if (!bookedSlots.includes(time)) slots.push(time);
+        if (!allBookedSlots.includes(time)) slots.push(time);
         current = addMinutes(current, 30);
       }
     }
     
     return Array.from(new Set(slots)).sort();
-  };
-
-  const generateTimeSlots = (start: Date, end: Date) => {
-    const slots: string[] = [];
-    let current = new Date(start);
-    
-    if (end < start) end.setDate(end.getDate() + 1);
-    
-    while (current < end) {
-      slots.push(format(current, 'HH:mm'));
-      current = addMinutes(current, 30);
-    }
-    return slots;
   };
 
   const handleCalendarChange = (index: number, range: RangeKeyDict) => {

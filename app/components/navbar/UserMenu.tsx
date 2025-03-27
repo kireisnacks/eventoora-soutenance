@@ -3,17 +3,20 @@
 import  Avatar  from "../ui/MyAvatar"
 import { Separator } from "../ui/separator"
 
-import { Menu } from 'lucide-react';
-import { Heart } from 'lucide-react';
-import { UserRound } from 'lucide-react';
-import { CircleHelp } from 'lucide-react';
-import { HandCoins } from 'lucide-react';
-import { LogOut } from 'lucide-react';
-import { LogIn } from 'lucide-react';
-import { Armchair} from 'lucide-react';
-import { UserRoundPlus } from 'lucide-react';
+import { 
+    Menu, 
+    Heart, 
+    UserRound, 
+    CircleHelp, 
+    HandCoins, 
+    LogOut, 
+    LogIn, 
+    Armchair, 
+    UserRoundPlus 
+  } from 'lucide-react';
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import UserMenuItem from "./UserMenuItem";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -29,6 +32,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const [isOpen, setIsOpen] = useState(false);
@@ -66,17 +70,17 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                                 <>
                                     <UserMenuItem
-                                        onClick={() => {}}
+                                        onClick={() => router.push("/m/favorites")}
                                         label = "Mes Favoris"
                                         icon = {Heart}
                                     />
                                     <UserMenuItem
-                                        onClick={() => {}}
+                                        onClick={() => router.push("/m/listings")}
                                         label = "Mes Annonces"
                                         icon = {Armchair}
                                     />
                                     <UserMenuItem
-                                        onClick={() => {}}
+                                        onClick={() => router.push("/m/profile")}
                                         label = "Profil"
                                         icon = {UserRound}
                                     />

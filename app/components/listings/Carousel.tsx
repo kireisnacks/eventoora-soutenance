@@ -8,9 +8,10 @@ import { BsCircle, BsCircleFill } from 'react-icons/bs';
 // Separate carousel component with TypeScript props
 interface CarouselProps {
   images: string[];
+  badgeLabel?: string;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, badgeLabel }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = useCallback((e: React.MouseEvent) => {
@@ -27,6 +28,12 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-xl">
+      {/* Badge label */}
+      {badgeLabel && (
+        <div className="absolute top-2 left-2 z-10 bg-white text-black px-3 py-1 rounded-full text-sm font-semibold">
+          {badgeLabel}
+        </div>
+      )}
       {/* Main image */}
       <Image
         fill

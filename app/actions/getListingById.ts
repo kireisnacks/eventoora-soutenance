@@ -6,10 +6,10 @@ interface IParams {
 }
 
 export default async function getListingById (
-    params: IParams
+    params: Promise<IParams>
 ) {
     try {
-        const { spaceId } = params;
+        const { spaceId } = await params;
 
         const listing = await prisma.space.findUnique({
             where: {
@@ -18,6 +18,7 @@ export default async function getListingById (
             include: {
                 user: true,
                 operatingHours: true,
+                reviews: true,
             }
         });
 
@@ -35,8 +36,8 @@ export default async function getListingById (
                 ...listing.user,
                 createdAt: listing.user.createdAt.toISOString(),
                 updatedAt: listing.user.updatedAt.toISOString(),
-                emailVerified:
-                    listing.user.emailVerified?.toISOString() || null,
+                emailVerified: listing.user.emailVerified?.toISOString() || null,
+                dateOfBirth: listing.user.dateOfBirth?.toISOString() || null,
             }
         }
     } catch (error: any) {
